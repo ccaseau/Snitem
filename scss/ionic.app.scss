@@ -1,0 +1,118 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+body
+{
+  background-color:blue;
+}
+
+ion-content
+{
+  // background-color:#64B5F6;
+  background-image: url('../img/background2.png');
+  background-repeat:no-repeat;
+}
+
+h2,h3,h4,h5
+{
+  color:black;
+  font-weight:bold;
+}
+
+h3
+{
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 8% 0 8%;
+}
+
+h5, h4
+{
+  padding: 1% 4% 1% 8%;
+  text-align:left;
+}
+
+.button-block
+{
+  width:85%!important;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#boutons-rep
+{
+  margin-top:3%;
+}
+
+.row, .scroll {
+  height: 100%;
+}
+
+.button-reponse
+{
+  line-height: 20px;
+  padding: 9px 12px;
+  text-align:left;
+  // font-size:12px!important;
+}
+
+.dynamic-content
+{
+  // background-color:Whitesmoke;
+  height:80%;
+  margin-top:10%;
+  padding: 7% 5% 0 5%;
+}
+
+.button
+{
+  font-weight:bold!important;
+}
+
+.row-bottom
+{
+ height:0!important;
+}
+
+.button-big
+{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.button-bottom
+{
+  position:fixed;
+  bottom:8%;
+  width:38%!important;
+}
+
+h4
+{
+  font-size:22px
+}
+
+h5
+{
+  font-size:16px;
+}

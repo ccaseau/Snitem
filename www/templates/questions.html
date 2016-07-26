@@ -1,0 +1,28 @@
+<ion-view ng-style = "background_img" view-title="Home">
+  <ion-content>
+
+    <div class="row row-center text-center">
+      <div class = "col col-50 col-offset-50 dynamic-content">
+        <div ng-show="view_question">
+          <h4>QUESTION {{count+1}}</h4>
+          <h5>{{question[count].intitule}}</h5>
+          <div class = "col" id ="boutons-rep">
+            <div ng-repeat ="r in question.reponse[count]" >
+              <button class="button-reponse button button-block button-positive" ng-click = "getAnswer(r,question[count],$index)">
+                {{r}}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div ng-show="view_explication">
+          <h4>QUESTION {{count+1}}</h4>
+          <h4> BONNE REPONSE ! </h4>
+          <h5>{{question[count].explication}}</h5>
+          <button class="button button-energized button-big button-block button-bottom" ng-click="getNextQuestion()">Continuez</button>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
