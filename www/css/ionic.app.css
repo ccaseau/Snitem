@@ -9815,15 +9815,13 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-body {
-  background-color: blue; }
-
 ion-content {
-  background-image: url("../img/background2.png");
-  background-repeat: no-repeat; }
+  background-image: url("../img/background.png");
+  background-repeat: no-repeat;
+  background-size: 100%; }
 
 h2, h3, h4, h5 {
-  color: black;
+  color: white;
   font-weight: bold; }
 
 h3 {
@@ -9867,12 +9865,20 @@ h5, h4 {
   font-weight: bold; }
 
 .button-bottom {
-  position: fixed;
-  bottom: 8%;
-  width: 38% !important; }
+  top: 90% !important;
+  left: 70% !important;
+  position: fixed !important; }
 
 h4 {
   font-size: 22px; }
 
 h5 {
   font-size: 16px; }
+
+.mdl-button, .platform-android .button, .platform-android .button.activated, .platform-android .button.active, .platform-override .button, .platform-override .button.activated, .platform-override .button.active {
+  height: auto !important;
+  line-height: 25px;
+  text-align: center; }
+
+#message_explication {
+  color: #FFC107; }

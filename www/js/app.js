@@ -1,5 +1,5 @@
 
-var app = angular.module('Snitem', ['ionic', 'Snitem.controllers', 'Snitem.services'])
+var app = angular.module('Snitem', ['ionic', 'Snitem.controllers', 'Snitem.services','ionMDRipple'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,6 +28,12 @@ var app = angular.module('Snitem', ['ionic', 'Snitem.controllers', 'Snitem.servi
   url: '/questions',
   templateUrl: 'templates/questions.html',
   controller: 'QstCtrl'
+})
+
+.state('score', {
+url: '/score',
+templateUrl: 'templates/score.html',
+controller: 'ScoreCtrl'
 })
 
   // if none of the above states are matched, use this as the fallback
