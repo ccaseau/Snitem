@@ -36,6 +36,11 @@ templateUrl: 'templates/score.html',
 controller: 'ScoreCtrl'
 })
 
+.state('custom', {
+url: '/custom',
+templateUrl: 'templates/custom.html'
+})
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home');
 

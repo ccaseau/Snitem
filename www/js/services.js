@@ -14,7 +14,7 @@ app.factory('ManageScore', function(){
       myScore = 0;
       return myScore;
     },
-    
+
     add: function()
     {
       myScore = myScore + 1;
@@ -22,3 +22,21 @@ app.factory('ManageScore', function(){
     },
   }
 })
+
+// app.factory('ManageCustomisation', function(){
+//
+//   var bouton_principal = "";
+//   var bouton_reponse = "";
+//   var police = "";
+//   var couleur_texte = "";
+//   var background = "";
+//
+//   return {
+//
+//     init: function()
+//     {
+//       return couleur_texte;
+//     },
+//
+//   }
+// })

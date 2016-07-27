@@ -1,11 +1,11 @@
 <ion-view view-title="Score">
-  <ion-content>
+  <ion-content ng-style="background_img">
     <div class="row text-center">
       <div class = "col col-50 col-offset-50 dynamic-content">
         <div class = "row row-center">
           <div class ="col">
-            <h3>Votre score est de {{score}}</h3>
-              <button ion-ripple class="button button-energized button-big button-bottom " ng-click ="next()">Continuez</button>
+            <h3 ng-style="texte_color">Votre score est de {{score}}</h3>
+              <button  ion-ripple ng-style ="bouton_principal" class="button button-energized button-big button-bottom " ng-click ="next()">Quittez</button>
       </div>
     </div>
   </div>

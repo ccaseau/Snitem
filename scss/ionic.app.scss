@@ -24,14 +24,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 ion-content
 {
   // background-color:#64B5F6;
-  background-image: url('../img/background.png');
+  // background-image: url('../img/background2.png');
   background-repeat:no-repeat;
   background-size: 100%;
 }
 
 h2,h3,h4,h5
 {
-  color:white;
+  color:black;
   font-weight:bold;
 }
 
@@ -58,6 +58,13 @@ h5, h4
 #boutons-rep
 {
   margin-top:3%;
+}
+
+#tool-img
+{
+  left: 20px;
+  width: 5% !important;
+  position: fixed;
 }
 
 .row, .scroll {
@@ -121,5 +128,5 @@ h5
 
 #message_explication
 {
-  color:#FFC107;
+  color:#F9A61A;
 }

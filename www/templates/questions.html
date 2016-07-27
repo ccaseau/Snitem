@@ -1,24 +1,24 @@
-<ion-view view-title="Home">
-  <ion-content>
+<ion-view view-title="Questions">
+  <ion-content ng-style="background_img">
 
     <div class="row row-center text-center">
       <div class = "col col-50 col-offset-50 dynamic-content">
         <div ng-show="view_question">
-          <h4>QUESTION {{count+1}}</h4>
-          <h5>{{question[count].intitule}}</h5>
+          <h4 ng-style="question_color" >QUESTION {{count+1}}</h4>
+          <h5 ng-style="texte_color">{{question[count].intitule}}</h5>
           <div class = "col" id ="boutons-rep">
             <div ng-repeat ="r in question.reponse[count]" >
-              <button ion-ripple class="button-reponse button button-block button-calm" ng-click = "getAnswer(r,question[count])">
+              <button ion-ripple ng-style ="bouton_reponse" class="button-reponse button button-block button-calm" ng-click = "getAnswer(r,question[count])">
                 {{r}}
               </button>
             </div>
           </div>
         </div>
         <div ng-show="view_explication">
-          <h4>QUESTION {{count+1}}</h4>
-          <h4 id="message_explication">{{message}}</h4>
-          <h5>{{question[count].explication}}</h5>
-          <button ion-ripple class="button button-energized button-big button-bottom" ng-click="getNextQuestion()">Continuez</button>
+          <h4 ng-style = "question_color" >QUESTION {{count+1}}</h4>
+          <h4 ng-style="message_color">{{message}}</h4>
+          <h5 ng-style="texte_color">{{question[count].explication}}</h5>
+          <button ion-ripple ng-style ="bouton_principal" class="button button-energized button-big button-bottom" ng-click="getNextQuestion()">Continuez</button>
         </div>
         </div>
       </div>

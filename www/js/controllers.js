@@ -1,26 +1,41 @@
 var app = angular.module('Snitem.controllers', [])
 
+app.controller('SnitemCtrl', function($scope,$state,$timeout) {
+    $scope.$on('$ionicView.enter', function(e){
+      console.log("Snitem controller fonctionne");
+    })
+      $scope.bouton_principal = {"background-color": '#F9A61A'};
+      $scope.bouton_reponse = {"background-color": '#00ACCE'};
+      $scope.question_color = {"color": '#00ACCE'};
+      $scope.texte_color = {"color": 'black'};
+      $scope.message_color = {"color": '#F9A61A'};
+      $scope.background_img = {"background-image": "url('./img/background2.png')"}
+
+      $scope.custom = function() {
+        $state.go('custom');
+      }
+  });
+
 app.controller('HomeCtrl', function($scope,$state,$timeout) {
     console.log("vous êtes sur la page home");
     $scope.next = function()
     {
       $timeout(function() {
         $state.go('questions');
-      }, 100);
+      }, 200);
     }
   });
 
   app.controller('ScoreCtrl', function($scope,$state,$timeout,ManageScore) {
-
     $scope.$on('$ionicView.enter', function(e){
       $scope.score = ManageScore.init();
     })
-    
+
       $scope.next = function()
       {
         $timeout(function() {
           $state.go('home');
-        }, 100);
+        }, 500);
       }
     });
 
@@ -145,11 +160,11 @@ app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {
         // dans tt les cas
         $timeout(function() {
           $scope.view_question = false;
-        }, 500);
+        }, 530);
 
         $timeout(function() {
           $scope.view_explication = true;
-        }, 930);
+        }, 600);
 
         console.log($scope.score);
       }
@@ -160,15 +175,15 @@ app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {
         {
             $timeout(function() {
               $scope.view_explication = false;
-            }, 500);
+            }, 530);
 
             $timeout(function() {
               $scope.count = $scope.count + 1;
-            }, 520);
+            }, 550);
 
             $timeout(function() {
               $scope.view_question = true;
-            }, 540)
+            }, 600)
         }
 
         else

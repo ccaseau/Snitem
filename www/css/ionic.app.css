@@ -9816,12 +9816,11 @@ a.button {
   transition-duration: 0s; }
 
 ion-content {
-  background-image: url("../img/background.png");
   background-repeat: no-repeat;
   background-size: 100%; }
 
 h2, h3, h4, h5 {
-  color: white;
+  color: black;
   font-weight: bold; }
 
 h3 {
@@ -9840,6 +9839,11 @@ h5, h4 {
 
 #boutons-rep {
   margin-top: 3%; }
+
+#tool-img {
+  left: 20px;
+  width: 5% !important;
+  position: fixed; }
 
 .row, .scroll {
   height: 100%; }
@@ -9881,4 +9885,4 @@ h5 {
   text-align: center; }
 
 #message_explication {
-  color: #FFC107; }
+  color: #F9A61A; }
