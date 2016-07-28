@@ -1,5 +1,7 @@
 var app = angular.module('Snitem.controllers', [])
 
+//SnitemCtrl => Controlleur général de l'application, les traitements generaux s'y font
+//comme par exemple la customisation visuelle
 app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation) {
     $scope.$on('$ionicView.enter', function(e){
       console.log("Snitem controller fonctionne");
@@ -23,6 +25,7 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation
 
   });
 
+  //CustomCtrl => Ce controlleur gére le formulaire de la page custom.html
   app.controller('CustomCtrl', function($scope,$state,$timeout,ManageCustomisation) {
 
     $scope.createTheme = function()
@@ -33,6 +36,7 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation
 
       })
 
+//HomeCtrl => Controlleur de la page home.html
 app.controller('HomeCtrl', function($scope,$state,$timeout) {
     console.log("vous êtes sur la page home");
 
@@ -48,6 +52,7 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
     }
   });
 
+  //ScoreCtrl => Controlleur de la page score.html. Gere notamment l'instant gagnant : roue et lots
   app.controller('ScoreCtrl', function($scope,$state,$timeout,ManageScore) {
     $scope.$on('$ionicView.enter', function(e){
       $scope.score = ManageScore.init();
@@ -142,6 +147,7 @@ loadedImg.src = "img/wheel-try.png";
 
     });
 
+//QstCtrl => Controlleur de la page question.html. Logique question/reponse, enchainement, explications, calcul du score...
 app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {
     console.log("vous êtes sur la page des questions");
 
