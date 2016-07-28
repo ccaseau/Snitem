@@ -5,12 +5,21 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation
       console.log("Snitem controller fonctionne");
     })
 
+    $scope.margeStyleObj = function(objectList) {
+      var obj = {};
+        objectList.forEach(function(x) {
+          angular.extend(obj,x);
+        });
+      return obj;
+    }
+
       $scope.bouton_principal = {"background-color": '#F9A61A'};
       $scope.bouton_reponse = {"background-color": '#00ACCE'};
       $scope.question_color = {"color": '#00ACCE'};
       $scope.texte_color = {"color": 'black'};
       $scope.message_color = {"color": '#F9A61A'};
       $scope.background_img = {"background-image": "url('img/background2.png')"}
+      $scope.police = {"font-family" :"Exo"};
 
   });
 
@@ -42,6 +51,7 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
   app.controller('ScoreCtrl', function($scope,$state,$timeout,ManageScore) {
     $scope.$on('$ionicView.enter', function(e){
       $scope.score = ManageScore.init();
+      $scope.canspin = true;
     })
 
     //Mise en place des differents angles d'arrêts sur une base de 6 lots :
@@ -57,7 +67,8 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
     TabAngle["Chargeurs"] = TabAngle["Perche"]+EcartAngle;
     TabAngle["Sets"] = TabAngle["Chargeurs"]+EcartAngle;
 
-    $scope.canspin = true;
+    $scope.lot ="une montre connectée"
+    $scope.wheel_time = true;
 
     $scope.wheel = new Winwheel({
         'drawMode' : 'image',
@@ -101,11 +112,15 @@ loadedImg.src = "img/wheel-try.png";
     {
       $scope.wheel.stopAnimation(false);
     }
-      $scope.next = function()
+      $scope.quit = function()
       {
         $timeout(function() {
           $state.go('home');
         }, 500);
+
+        $timeout(function() {
+          $scope.wheel_time = true;
+        }, 600);
       }
 
       $scope.spin = function()
@@ -116,13 +131,15 @@ loadedImg.src = "img/wheel-try.png";
                 $scope.wheel.stopAnimation(false);
                 $scope.wheel.rotationAngle = 0;
                 $scope.canspin = true;
-          }, 3200);
+                $scope.wheel_time = false;
+          }, 3500);
 
-          $scope.wheel.animation.stopAngle = TabAngle["Perche"];
+          $scope.wheel.animation.stopAngle = TabAngle["Montre"];
           $scope.wheel.startAnimation();
           $scope.canspin = false;
         }
       }
+
     });
 
 app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {

@@ -3,14 +3,18 @@
     <div class="row text-center">
       <div class = "col col-50 col-offset-50 dynamic-content">
         <div class = "row row-center">
-          <div class ="col">
+          <div ng-show="wheel_time" class ="col">
             <!-- <h3 ng-style="texte_color">Votre score est de {{score}}</h3> -->
             <div  class = "scalingWheel" id="canvasContainer">
-              <canvas id="canvas" width="310" height="310"></canvas>
-              <img id="prizePointer" src="img/pointer2.png" alt="V" />
+              <canvas id="canvas" width="350" height="350"></canvas>
+              <img ng-show = "wheel_time" id="prizePointer" src="img/pointer2.png" alt="V" />
             </div>
-              <button  ion-ripple ng-style ="bouton_principal" class="button button-energized button-big button-bottom button-long"  ng-disabled="!canspin" ng-click ="spin()">Lancez la roue</button>
-      </div>
+              <button  ion-ripple ng-style="margeStyleObj([police,bouton_principal])" class="button button-energized button-big button-bottom button-long"  ng-disabled="!canspin" ng-click ="spin()">Lancez la roue</button>
+          </div>
+          <div class="col" ng-show="!wheel_time">
+            <h3 ng-style="margeStyleObj([police,question_color])" >Bravo ! <br> Tu as gagné {{lot}}</h3>
+              <button ion-ripple ng-style="margeStyleObj([police,bouton_principal])" class="button button-energized button-big button-bottom" ng-click="quit()">Quittez</button>
+          </div>
     </div>
   </div>
   </ion-content>
