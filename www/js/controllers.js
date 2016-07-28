@@ -1,28 +1,41 @@
 var app = angular.module('Snitem.controllers', [])
 
-app.controller('SnitemCtrl', function($scope,$state,$timeout) {
+app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation) {
     $scope.$on('$ionicView.enter', function(e){
       console.log("Snitem controller fonctionne");
     })
+
       $scope.bouton_principal = {"background-color": '#F9A61A'};
       $scope.bouton_reponse = {"background-color": '#00ACCE'};
       $scope.question_color = {"color": '#00ACCE'};
       $scope.texte_color = {"color": 'black'};
       $scope.message_color = {"color": '#F9A61A'};
-      $scope.background_img = {"background-image": "url('./img/background2.png')"}
+      $scope.background_img = {"background-image": "url('img/background2.png')"}
 
-      $scope.custom = function() {
-        $state.go('custom');
-      }
   });
+
+  app.controller('CustomCtrl', function($scope,$state,$timeout,ManageCustomisation) {
+
+    $scope.createTheme = function()
+    {
+      $state.go('home')
+      ManageCustomisation.create($scope.couleur);
+    }
+
+      })
 
 app.controller('HomeCtrl', function($scope,$state,$timeout) {
     console.log("vous êtes sur la page home");
+
     $scope.next = function()
     {
       $timeout(function() {
         $state.go('questions');
       }, 200);
+    }
+
+    $scope.custom = function() {
+      $state.go('custom');
     }
   });
 
@@ -31,11 +44,84 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
       $scope.score = ManageScore.init();
     })
 
+    //Mise en place des differents angles d'arrêts sur une base de 6 lots :
+    //Montres analogiques, stylos lumiere, clé USB, perches à selfie, chargeurs et sets de recharge
+
+    var nbLots = 6;
+    var EcartAngle = 360/nbLots;
+    var TabAngle = new Array();
+    TabAngle["Montre"] = EcartAngle/2;
+    TabAngle["Stylo"] = TabAngle["Montre"]+EcartAngle;
+    TabAngle["USB"] = TabAngle["Stylo"]+EcartAngle;
+    TabAngle["Perche"] = TabAngle["USB"]+EcartAngle;
+    TabAngle["Chargeurs"] = TabAngle["Perche"]+EcartAngle;
+    TabAngle["Sets"] = TabAngle["Chargeurs"]+EcartAngle;
+
+    $scope.canspin = true;
+
+    $scope.wheel = new Winwheel({
+        'drawMode' : 'image',
+        'numSegments'    : 6, //Nombre de lots + 1 pour le quartier "perdu"
+        'lineWidth'   : 0.00001,
+        'textFillStyle' : 'white',
+        'textFontSize' : 20,
+        'innerRadius'     : 0,
+        'textAlignment' : 'center',
+        'segments'       :
+        [
+            {'fillStyle' : '#00ACCE', 'text' : 'Montre'}, // On indique à chaque fois la couleur du quartier et le texte qui s'affichera
+            {'fillStyle' : '#F9A517', 'text' : 'Stylo'},
+            {'fillStyle' : '#00ACCE', 'text' : 'USB'},
+            {'fillStyle' : '#F9A517', 'text' : 'Perche'},
+            {'fillStyle' : '#00ACCE', 'text' : 'Chargeurs'},
+            {'fillStyle' : '#F9A517', 'text' : 'Sets'},
+        ],
+        'animation' :
+        {
+            'type'     : 'spinToStop',
+            'duration' : 3, // durée de l'animation => parametre la vitesse de la roue
+            'spins'    : 6, //Nombre de tours que va faire la roue
+        }
+  });
+
+  // Create new image object in memory.
+var loadedImg = new Image();
+
+// Create callback to execute once the image has finished loading.
+loadedImg.onload = function()
+{
+    $scope.wheel.wheelImage = loadedImg;    // Make wheelImage equal the loaded image object.
+    $scope.wheel.draw();                    // Also call draw function to render the wheel.
+}
+
+// Set the image source, once complete this will trigger the onLoad callback (above).
+loadedImg.src = "img/wheel-try.png";
+
+  $scope.resetWheel = function()
+    {
+      $scope.wheel.stopAnimation(false);
+    }
       $scope.next = function()
       {
         $timeout(function() {
           $state.go('home');
         }, 500);
+      }
+
+      $scope.spin = function()
+      {
+        if($scope.canspin = true)
+        {
+          $timeout(function() {
+                $scope.wheel.stopAnimation(false);
+                $scope.wheel.rotationAngle = 0;
+                $scope.canspin = true;
+          }, 3200);
+
+          $scope.wheel.animation.stopAngle = TabAngle["Perche"];
+          $scope.wheel.startAnimation();
+          $scope.canspin = false;
+        }
       }
     });
 

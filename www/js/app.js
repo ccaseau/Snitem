@@ -38,7 +38,8 @@ controller: 'ScoreCtrl'
 
 .state('custom', {
 url: '/custom',
-templateUrl: 'templates/custom.html'
+templateUrl: 'templates/custom.html',
+controller: 'CustomCtrl'
 })
 
   // if none of the above states are matched, use this as the fallback

@@ -4,8 +4,12 @@
       <div class = "col col-50 col-offset-50 dynamic-content">
         <div class = "row row-center">
           <div class ="col">
-            <h3 ng-style="texte_color">Votre score est de {{score}}</h3>
-              <button  ion-ripple ng-style ="bouton_principal" class="button button-energized button-big button-bottom " ng-click ="next()">Quittez</button>
+            <!-- <h3 ng-style="texte_color">Votre score est de {{score}}</h3> -->
+            <div  class = "scalingWheel" id="canvasContainer">
+              <canvas id="canvas" width="310" height="310"></canvas>
+              <img id="prizePointer" src="img/pointer2.png" alt="V" />
+            </div>
+              <button  ion-ripple ng-style ="bouton_principal" class="button button-energized button-big button-bottom button-long"  ng-disabled="!canspin" ng-click ="spin()">Lancez la roue</button>
       </div>
     </div>
   </div>

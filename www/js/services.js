@@ -23,20 +23,21 @@ app.factory('ManageScore', function(){
   }
 })
 
-// app.factory('ManageCustomisation', function(){
-//
-//   var bouton_principal = "";
-//   var bouton_reponse = "";
-//   var police = "";
-//   var couleur_texte = "";
-//   var background = "";
-//
-//   return {
-//
-//     init: function()
-//     {
-//       return couleur_texte;
-//     },
-//
-//   }
-// })
+app.factory('ManageCustomisation', function(){
+
+  var couleur_texte = '';
+
+  return {
+
+    init: function()
+    {
+      return couleur_texte;
+    },
+
+    create: function(couleur)
+    {
+      couleur_texte = couleur;
+    },
+
+  }
+})

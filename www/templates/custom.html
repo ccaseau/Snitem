@@ -1,5 +1,34 @@
 <ion-view view-title="Custom">
   <ion-content>
-    <h2> Customisation </h2>
+    <div class="row text-center">
+      <div class ="col-50 col-offset-25">
+        <h3>Customiser l'application</h3>
+        <form ng-submit = "createTheme()">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Image de fond</span>
+              <input ng-model="background" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Couleur du texte</span>
+              <input ng-model = "couleur" type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Couleur1</span>
+              <input type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Couleur2</span>
+              <input type="text">
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Police d'ecriture</span>
+              <input type="text">
+            </label>
+          </div>
+          <button type="submit" class="button button-dark button-big ">Customisez </button>
+        </form>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
