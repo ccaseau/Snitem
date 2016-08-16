@@ -5,8 +5,16 @@ var app = angular.module('Snitem.controllers', [])
 app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation) {
     $scope.$on('$ionicView.enter', function(e){
       console.log("Snitem controller fonctionne");
-      console.log("bou!")
-      console.log(ManageCustomisation.init());
+
+      //******* Pour customiser l'application changer ici les valeurs des variables ! *******//
+      $scope.bouton_principal = {"background-color": ManageCustomisation.init_couleur_1()}; //Couleur des boutons principaux en héxadecimal
+      $scope.bouton_reponse = {"background-color":  ManageCustomisation.init_couleur_2()}; //Couleur des boutons secondaires en héxadecimal
+      $scope.question_color = {"color":  ManageCustomisation.init_couleur_2()}; //Couleur de texte des questions
+      $scope.texte_color = {"color": ManageCustomisation.init_couleur_texte()}; //Couleur general des autres textes
+      $scope.message_color = {"color":  ManageCustomisation.init_couleur_1()}; //Couleur secondaire des textes
+      $scope.background_img = {"background-image": "url("+ManageCustomisation.init_background_img()+")"} //Image de fond (lien vers la créa)
+      $scope.police = {"font-family" :ManageCustomisation.init_police()};//Nom de la police d'ecriture utilisée /!\ elle doit être présente dans le dossier /font et chargée dans le css
+
     })
 
     $scope.margeStyleObj = function(objectList) {
@@ -17,25 +25,26 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation
       return obj;
     }
 
-
-      //******* Pour customiser l'application changer ici les valeurs des variables ! *******//
-      $scope.bouton_principal = {"background-color": '#F9A61A'}; //Couleur des boutons principaux en héxadecimal
-      $scope.bouton_reponse = {"background-color": '#00ACCE'}; //Couleur des boutons secondaires en héxadecimal
-      $scope.question_color = {"color": '#00ACCE'}; //Couleur de texte des questions
-      $scope.texte_color = {"color": 'black'}; //Couleur general des autres textes
-      $scope.message_color = {"color": '#F9A61A'}; //Couleur secondaire des textes
-      $scope.background_img = {"background-image": "url('img/background2.png')"} //Image de fond (lien vers la créa)
-      $scope.police = {"font-family" :"Exo"};//Nom de la police d'ecriture utilisée /!\ elle doit être présente dans le dossier /font et chargée dans le css
-
   });
 
   //CustomCtrl => Ce controlleur gére le formulaire de la page custom.html
   app.controller('CustomCtrl', function($scope,$state,$timeout,ManageCustomisation) {
 
-    $scope.couleur ='';
+    $scope.theme = {};
     $scope.createTheme = function()
     {
-      console.log($scope.couleur);
+      //Image de fond
+      ManageCustomisation.create_background_img($scope.theme.background);
+      //Couleur du texte
+      ManageCustomisation.create_couleur_texte($scope.theme.couleurTexte);
+      //Couleur principale
+      ManageCustomisation.create_couleur_1($scope.theme.couleur1);
+      //Couleur secondaire
+      ManageCustomisation.create_couleur_2($scope.theme.couleur2);
+      //Police d'ecriture
+      ManageCustomisation.create_police($scope.theme.police);
+
+      $state.go('home');
     }
 
       })

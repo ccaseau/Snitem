@@ -7,24 +7,23 @@
           <div class="list">
             <label class="item item-input">
               <span class="input-label">Image de fond</span>
-              <input ng-model="background" type="text">
+              <input ng-model="theme.background" type="text">
             </label>
             <label class="item item-input">
               <span class="input-label">Couleur du texte</span>
-              <input ng-model="couleur" type="text">
-              {{couleur}}
+              <input ng-model="theme.couleurTexte" type="text">
             </label>
             <label class="item item-input">
               <span class="input-label">Couleur1</span>
-              <input type="text">
+              <input ng-model="theme.couleur1" type="text">
             </label>
             <label class="item item-input">
               <span class="input-label">Couleur2</span>
-              <input type="text">
+              <input ng-model="theme.couleur2" type="text">
             </label>
             <label class="item item-input">
               <span class="input-label">Police d'ecriture</span>
-              <input type="text">
+              <input ng-model="theme.police" type="text">
             </label>
           </div>
           <button type="submit" class="button button-dark button-big ">Customisez </button>
