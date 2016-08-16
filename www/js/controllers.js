@@ -5,6 +5,8 @@ var app = angular.module('Snitem.controllers', [])
 app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation) {
     $scope.$on('$ionicView.enter', function(e){
       console.log("Snitem controller fonctionne");
+      console.log("bou!")
+      console.log(ManageCustomisation.init());
     })
 
     $scope.margeStyleObj = function(objectList) {
@@ -15,23 +17,25 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ManageCustomisation
       return obj;
     }
 
-      $scope.bouton_principal = {"background-color": '#F9A61A'};
-      $scope.bouton_reponse = {"background-color": '#00ACCE'};
-      $scope.question_color = {"color": '#00ACCE'};
-      $scope.texte_color = {"color": 'black'};
-      $scope.message_color = {"color": '#F9A61A'};
-      $scope.background_img = {"background-image": "url('img/background2.png')"}
-      $scope.police = {"font-family" :"Exo"};
+
+      //******* Pour customiser l'application changer ici les valeurs des variables ! *******//
+      $scope.bouton_principal = {"background-color": '#F9A61A'}; //Couleur des boutons principaux en héxadecimal
+      $scope.bouton_reponse = {"background-color": '#00ACCE'}; //Couleur des boutons secondaires en héxadecimal
+      $scope.question_color = {"color": '#00ACCE'}; //Couleur de texte des questions
+      $scope.texte_color = {"color": 'black'}; //Couleur general des autres textes
+      $scope.message_color = {"color": '#F9A61A'}; //Couleur secondaire des textes
+      $scope.background_img = {"background-image": "url('img/background2.png')"} //Image de fond (lien vers la créa)
+      $scope.police = {"font-family" :"Exo"};//Nom de la police d'ecriture utilisée /!\ elle doit être présente dans le dossier /font et chargée dans le css
 
   });
 
   //CustomCtrl => Ce controlleur gére le formulaire de la page custom.html
   app.controller('CustomCtrl', function($scope,$state,$timeout,ManageCustomisation) {
 
+    $scope.couleur ='';
     $scope.createTheme = function()
     {
-      $state.go('home')
-      ManageCustomisation.create($scope.couleur);
+      console.log($scope.couleur);
     }
 
       })
@@ -76,8 +80,11 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
     $scope.wheel_time = true;
 
     $scope.wheel = new Winwheel({
+        //On peut choisir d'utiliser directement un image en .png au lieu de tracer une roue
+        //L'image devra mesurer 350*350, être en .png avec fond transparent
+        //Si on souhaite ne pas utiliser l'image il suffit de commenter la ligne juste en dessous : 'drawMode' : 'image'
         'drawMode' : 'image',
-        'numSegments'    : 6, //Nombre de lots + 1 pour le quartier "perdu"
+        'numSegments'    : 6, //Nombre de lots
         'lineWidth'   : 0.00001,
         'textFillStyle' : 'white',
         'textFontSize' : 20,
@@ -95,24 +102,17 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
         'animation' :
         {
             'type'     : 'spinToStop',
-            'duration' : 3, // durée de l'animation => parametre la vitesse de la roue
-            'spins'    : 6, //Nombre de tours que va faire la roue
+            'duration' : 3, // durée de l'animation => 3secondes
+            'spins'    : 6, //Nombre de tours que va faire la roue => parametre la vitesse de rotation.
         }
   });
-
-  // Create new image object in memory.
 var loadedImg = new Image();
-
-// Create callback to execute once the image has finished loading.
 loadedImg.onload = function()
 {
-    $scope.wheel.wheelImage = loadedImg;    // Make wheelImage equal the loaded image object.
-    $scope.wheel.draw();                    // Also call draw function to render the wheel.
+    $scope.wheel.wheelImage = loadedImg;
+    $scope.wheel.draw();
 }
-
-// Set the image source, once complete this will trigger the onLoad callback (above).
 loadedImg.src = "img/wheel-try.png";
-
   $scope.resetWheel = function()
     {
       $scope.wheel.stopAnimation(false);
@@ -253,7 +253,7 @@ app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {
 
       $scope.getAnswer = function(chosenAnswer,currentQuest) {
 
-        // si la réponse est juste
+        //si la réponse est juste
         if((chosenAnswer == currentQuest.bonneRep) || (currentQuest.bonneRep == ""))
         {
           $scope.message = "Bravo, bonne réponse !" ;
@@ -262,11 +262,11 @@ app.controller('QstCtrl', function($scope,$location, $timeout,ManageScore) {
             $scope.score =  ManageScore.add();
           }
         }
-        // si la réponse est fausse
+        //si la réponse est fausse
         else {
             $scope.message = "Mauvaise réponse..." ;
         }
-        // dans tt les cas
+        //dans tt les cas
         $timeout(function() {
           $scope.view_question = false;
         }, 530);
