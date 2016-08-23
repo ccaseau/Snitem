@@ -1,7 +1,8 @@
-
+//INITIALISATION DE L'APPLICATION, CREATION BASE DE DONNEE + INJECTION .CSV
 var app = angular.module('Snitem', ['ionic', 'Snitem.controllers', 'Snitem.services','ionMDRipple','ngCordova'])
 
 app.run(function($ionicPlatform,$cordovaSQLite,$http) {
+
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -12,7 +13,7 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
       StatusBar.styleDefault();
     }
 
-    //On commence par supprimer la base si elle existe déja
+    //On commence par supprimer la base de donnée locale au cas ou elle existe déja
     dbremove();
 
       function localDBcreate()
@@ -45,7 +46,7 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
         //Traitement du fichier themes.csv
         $http.get('data/themes.csv').success(function(data){
           //On récupere les données de theme.csv et on utilise le plugin papa-parse pour convertir en format js
-          //Le resultat de papa.parse nous renvoi 3 objets : data, errors et meta => dans notre cas c'est data qui nous interessent c'est la ou on retrouve nos données parsées. Dans errors on retrouve un tableau d'erreurs s'il y en a et dans meta des info suplémentaires sur le parsing
+          //Le resultat de papa.parse nous renvoi 3 objets : data, errors et meta => dans notre cas c'est data qui nous interesse : c'est la ou on retrouve nos données parsées. Dans errors on retrouve un tableau d'erreurs s'il y en a et dans meta des info suplémentaires sur le parsing
           var resultsT = Papa.parse(data);
           var ThemeData = resultsT.data; //On veut juste récuperer la partie "data" du parse
           //On execute alors une requête INSERT pour entrer notre Theme en base. => ex. ThemeData[1][0] fait reference à la deuxieme ligne et à la premiere colonne de notre fichier CSV.
@@ -85,6 +86,7 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
         })
       }
 
+      //On met en place un fonction pour supprimer la base de donnée existante (dans le cas ou des changements dans les fichiers .csv ont eu lieu et que l'on veut mettre à jour la base)
       function dbremove()
       {
         window.sqlitePlugin.deleteDatabase({name: 'my.db', location: 'default'}, removesuccess, removeerror);
@@ -105,6 +107,7 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
   });
 })
 
+//Ici on gére les routes
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -127,19 +130,12 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
   controller: 'QstCtrl'
 })
 
-.state('score', {
-url: '/score',
-templateUrl: 'templates/score.html',
-controller: 'ScoreCtrl'
+.state('ig', {
+url: '/ig',
+templateUrl: 'templates/ig.html',
+controller: 'IGCtrl'
 })
 
-.state('custom', {
-url: '/custom',
-templateUrl: 'templates/custom.html',
-controller: 'CustomCtrl'
-})
-
-  // if none of the above states are matched, use this as the fallback
+  //La route par defaut est l'index
   $urlRouterProvider.otherwise('/index');
-
 });
