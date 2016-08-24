@@ -1,6 +1,5 @@
 <ion-view view-title="Questions">
   <ion-content ng-style="background_img">
-
     <div class="row row-center text-center">
       <div class = "col col-50 col-offset-50 dynamic-content">
         <div ng-show="view_question">
@@ -20,9 +19,7 @@
           <h5 ng-style="margeStyleObj([police,texte_color])">{{question[count].explication}}</h5>
           <button ion-ripple ng-style="margeStyleObj([police,bouton_principal])" class="button button-energized button-big button-bottom" ng-click="getNextQuestion()">Continuez</button>
         </div>
-        </div>
       </div>
     </div>
-
   </ion-content>
 </ion-view>

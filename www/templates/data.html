@@ -1,0 +1,39 @@
+<ion-view view-title="Data">
+  <ion-content>
+    <button ion-ripple class="button button-dark" ng-click ="back()">Retour</button>
+    <div class="row text-center">
+      <div class ="col col-80 col-offset-10">
+        <button ion-ripple class="button button-stable button-block" ng-click ="removeDB()">Réinitialiser la base</button>
+        <table>
+          <caption>Dotations gagnées</caption>
+          <tr>
+            <th>Dotation</th>
+            <th>Date de gain</th>
+          </tr>
+          <tr ng-repeat="d in data">
+            <td>{{d.CodeCadeau}}</td>
+            <td>{{d.DateGain}}</td>
+          </tr>
+
+        </table>
+        <table>
+          <caption>Dotations encore disponibles</caption>
+          <tr>
+            <th>Dotation</th>
+            <th>Quantité</th>
+            <th>Date de disponibilité</th>
+            <th>Obligatoire</th>
+            <th>Supprimer</th>
+          </tr>
+          <tr ng-repeat="d in data2">
+            <td>{{d.CodeCadeau}}</td>
+            <td>{{d.Quantite}}</td>
+            <td>{{d.ShowTime}}</td>
+            <td>{{d.Obligatoire}}</td>
+            <td ng-click="DelDotation(d.id)"><i class="icon ion-minus-circled"></i></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
