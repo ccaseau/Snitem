@@ -48,7 +48,7 @@ app.controller('HomeCtrl', function($scope,$state,$timeout) {
     }
     else {
       $timeout(function() {
-        $state.go('question');
+        $state.go('questions');
       }, 200);
     }
   }
@@ -158,7 +158,7 @@ app.controller('IGCtrl', function($scope,$state,$timeout,ManageScore,CadeauxData
     $scope.wheel.wheelImage = loadedImg;
     $scope.wheel.draw();//dés que l'image est disponible on peut la dessiner
   }
-  loadedImg.src = "img/wheel-try.png";
+  loadedImg.src = CREA_WHEEL;
   $scope.wheel = new Winwheel({
     //L'image utilisée doit mesurer 350*350, être en .png avec fond transparent
     'drawMode' : 'image',
@@ -195,7 +195,7 @@ app.controller('IGCtrl', function($scope,$state,$timeout,ManageScore,CadeauxData
         $scope.wheel.rotationAngle = 0;
         $scope.canspin = true;
         $scope.wheel_time = false;
-      }, 3500);//3500 = > Une fois que la roue à finit de tourner
+      }, 6000);
 
       //La ligne ci dessous va nous permettre de definir ou doit s'arreter la roue => l'angle d'arret de l'animation
       //Dans $scope.cadeau on a stocké le nom de la dotation disponible et dans TablAngle[$scope.cadeau] l'angle associé
