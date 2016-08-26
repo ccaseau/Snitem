@@ -7,7 +7,7 @@
           <h5 ng-style="margeStyleObj([police,texte_color])">{{question[count].intitule}}</h5>
           <div class = "col" id ="boutons-rep">
             <div ng-repeat ="r in question.reponse[count]" >
-              <button ion-ripple ng-show="r.length" ng-style="margeStyleObj([police,bouton_reponse])" class="button-reponse button button-block button-calm" ng-click = "getAnswer(r,question[count])">
+              <button ion-ripple ng-show="r.length && view_btn" ng-style="margeStyleObj([police,bouton_reponse])" class="button-reponse button button-block button-calm" ng-click = "getAnswer(r,question[count])">
                 {{r}}
               </button>
             </div>

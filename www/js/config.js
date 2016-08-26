@@ -1,8 +1,11 @@
+//Theme
+const CREA_WHEEL  = "img/wheel-try.png";
+const N_THEME = 1;
+
 //Questions
 const NBQUESTIONS = 7;
 
 //Dotations
-const CREA_WHEEL  = "img/wheel-try.png";
 const NBLOTS = 7;
 const ECARTANGLE = 360/NBLOTS;
 const TABANGLE = new Array();

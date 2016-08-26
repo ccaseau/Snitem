@@ -56,8 +56,12 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
         //Le resultat de papa.parse nous renvoi 3 objets : data, errors et meta => dans notre cas c'est data qui nous interesse : c'est la ou on retrouve nos données parsées. Dans errors on retrouve un tableau d'erreurs s'il y en a et dans meta des info suplémentaires sur le parsing
         var resultsT = Papa.parse(data);
         var ThemeData = resultsT.data; //On veut juste récuperer la partie "data" du parse
-        //On execute alors une requête INSERT pour entrer notre Theme en base. => ex. ThemeData[1][0] fait reference à la deuxieme ligne et à la premiere colonne de notre fichier CSV.
-        db.executeSql('INSERT OR IGNORE INTO Themes VALUES (?,?,?,?,?,?)', ['1',ThemeData[1][0],ThemeData[1][1],ThemeData[1][2],ThemeData[1][3],ThemeData[1][4]]);
+        //On execute alors une requête INSERT pour entrer nos Theme en base. => ex. ThemeData[1][0] fait reference à la deuxieme ligne et à la premiere colonne de notre fichier CSV.
+        for (i = 1; i < ThemeData.length-1; i++ )
+        {
+          var theme = ''+i;
+          db.executeSql('INSERT OR IGNORE INTO Themes VALUES (?,?,?,?,?,?)', ['theme',ThemeData[i][0],ThemeData[i][1],ThemeData[i][2],ThemeData[i][3],ThemeData[i][4]]);
+        }
       })
     }
     function injecterQuestions(tx)

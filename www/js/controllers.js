@@ -14,14 +14,15 @@ app.controller('FirstCtrl', function ($scope, $ionicModal,$state) {
 app.controller('SnitemCtrl', function($scope,$state,$timeout,ThemesDataService) {
   $scope.$on('$ionicView.enter', function(e){
     ThemesDataService.getAll(function(data){
+      console.log(data);
       //Dans angular avec ng-style on peut dynamiquement changer le style d'un élément ex: dans l'html ng-style="bouton_principal"
-      $scope.bouton_principal = {"background-color": data[0].color1}; //Couleur des boutons principaux en héxadecimal
-      $scope.bouton_reponse = {"background-color":  data[0].color2}; //Couleur des boutons secondaires en héxadecimal
-      $scope.question_color = {"color":  data[0].color2}; //Couleur de texte des questions
-      $scope.texte_color = {"color": data[0].textColor}; //Couleur general des autres textes
-      $scope.message_color = {"color": data[0].color1}; //Couleur secondaire des textes
-      $scope.background_img = {"background-image": "url("+data[0].background+")"} //Image de fond (lien vers la créa)
-      $scope.police = {"font-family" :data[0].font};//Nom de la police d'ecriture utilisée /!\ elle doit être présente dans le dossier /font et chargée dans le css
+      $scope.bouton_principal = {"background-color": data[N_THEME].color1}; //Couleur des boutons principaux en héxadecimal
+      $scope.bouton_reponse = {"background-color":  data[N_THEME].color2}; //Couleur des boutons secondaires en héxadecimal
+      $scope.question_color = {"color":  data[N_THEME].color2}; //Couleur de texte des questions
+      $scope.texte_color = {"color": data[N_THEME].textColor}; //Couleur general des autres textes
+      $scope.message_color = {"color": data[N_THEME].color1}; //Couleur secondaire des textes
+      $scope.background_img = {"background-image": "url("+data[N_THEME].background+")"} //Image de fond (lien vers la créa)
+      $scope.police = {"font-family" :data[N_THEME].font};//Nom de la police d'ecriture utilisée /!\ elle doit être présente dans le dossier /font et chargée dans le css
     })
   })
 
@@ -213,6 +214,7 @@ app.controller('QstCtrl', function($scope,$location,$timeout,ManageScore,Questio
     $scope.score = ManageScore.reset();//On met le score à 0
     $scope.view_explication = false;//Le explications ne sont pas affichées
     $scope.view_question = true;//la question est affichée
+    $scope.view_btn = true;
     $scope.question = [];
     $scope.question.reponse = [];
 
@@ -243,11 +245,13 @@ app.controller('QstCtrl', function($scope,$location,$timeout,ManageScore,Questio
     //dans tt les cas une fois qu'on a répondu on affiche l'explication et on cache la question
     $timeout(function() {
       $scope.view_question = false;
+      $scope.view_btn = false;
     },530);
 
     $timeout(function() {
       $scope.view_explication = true;
     }, 600);
+
   }
 
   $scope.getNextQuestion = function() {
@@ -265,6 +269,9 @@ app.controller('QstCtrl', function($scope,$location,$timeout,ManageScore,Questio
       $timeout(function() {
         $scope.view_question = true;
       }, 600)
+      $timeout(function() {
+        $scope.view_btn = true;
+      }, 800);
     }
     else
     {
