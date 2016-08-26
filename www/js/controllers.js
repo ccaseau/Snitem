@@ -37,15 +37,42 @@ app.controller('SnitemCtrl', function($scope,$state,$timeout,ThemesDataService) 
 
 //HomeCtrl => Controlleur de la page home.html
 app.controller('HomeCtrl', function($scope,$state,$timeout) {
+
   $scope.next = function()
   {
-    $timeout(function() {
-      $state.go('questions');
-    }, 200);
+    if(GO_IG)
+    {
+      $timeout(function() {
+        $state.go('ig');
+      }, 200);
+    }
+    else {
+      $timeout(function() {
+        $state.go('question');
+      }, 200);
+    }
   }
 });
 
-//HomeCtrl => Controlleur de la page home.html
+app.controller('LoginCtrl', function($scope,$state,$timeout) {
+  $scope.data =[];
+  $scope.wrong = false;
+  $scope.login = function()
+  {
+    if($scope.data.mdp == ADMIN_PASS)
+    {
+      $state.go('data')
+      $scope.data.mdp = '';
+      $scope.loginForm.$setPristine();
+      $scope.wrong = false;
+    }
+    else {
+      $scope.wrong = true;
+    }
+  }
+});
+
+//DataCtrl => Controlleur de la page Data
 app.controller('DataCtrl', function($scope,$state,$timeout,BackOfficeService) {
   console.log("vous êtes dans le backoffice");
 

@@ -18,7 +18,6 @@ app.factory('ManageScore', function(){
     },
   }
 })
-
 //Table Questions
 app.factory('QuestionsDataService', function ($cordovaSQLite, $ionicPlatform) {
 

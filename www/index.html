@@ -37,7 +37,7 @@
   <!-- Pour parser les fichiers CSV -->
   <script src="lib/papaparse/papaparse.js"></script>
   <script src="lib/angular-papa-promise/dist/angular-papa-promise.js"></script>
-  
+
 
   <!-- Pour la roue -->
   <script src="js/Winwheel.js"></script>
@@ -45,8 +45,14 @@
 
 </head>
 <body class="platform-android use-material-icons" ng-app="Snitem" ng-controller="SnitemCtrl">
-  <ion-nav-view><ion-spinner icon="bubbles"></ion-spinner></ion-nav-view>
-  <h3 id="loading_text">L'application charge les données</h3>
+  <ion-nav-view>
+    <div class="row row-center text-center responsive-sm">
+      <div class="col ">
+        <ion-spinner icon="bubbles"></ion-spinner>
+        <h3 id="loading_text">L'application charge les données</h3>
+        </div>
+      </div>
+  </ion-nav-view>
 
 </body>
 </html>

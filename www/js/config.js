@@ -12,7 +12,6 @@ TABANGLE["Sets"] = 160;
 TABANGLE["Montre"] = 205;
 TABANGLE["Stylo"] = 255;
 TABANGLE["Chargeurs"] = 308;
-
 // Gestion des angles en fonction du précédent
 // TABANGLE["Perche"] = 0;
 // TABANGLE["Montre"] = TABANGLE["Perche"]+ECARTANGLE;
@@ -21,3 +20,7 @@ TABANGLE["Chargeurs"] = 308;
 // TABANGLE["Montre2"] = TABANGLE["Sets"]+ECARTANGLE;;
 // TABANGLE["Stylo"] = TABANGLE["Montre2"]+ECARTANGLE;
 // TABANGLE["Chargeurs"] = TABANGLE["Stylo"]+ECARTANGLE;
+
+//Admin
+const GO_IG = false;
+const ADMIN_PASS = 'viraladmin';

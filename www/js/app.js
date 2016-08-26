@@ -128,6 +128,12 @@ app.run(function($ionicPlatform,$cordovaSQLite,$http) {
     controller: 'IGCtrl'
   })
 
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
   //La route par defaut est l'index
   $urlRouterProvider.otherwise('/index');
 });

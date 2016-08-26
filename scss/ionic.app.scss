@@ -49,6 +49,18 @@ ion-content
   color:red;
 }
 
+.login-list
+{
+  padding:30px;
+}
+
+.error {
+  padding: 1px 1px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color:red;
+}
+
 h2,h3,h4,h5
 {
   color:black;
@@ -76,6 +88,7 @@ caption
   padding:12px;
   font-style: italic;
 }
+
 table {
   font-family:Arial, Helvetica, sans-serif;
   color:#666;
@@ -276,16 +289,20 @@ h5
   color:#F9A61A;
 }
 
-#canvasContainer
-{
-  padding-bottom:8%!important;
+#canvasContainer {
+    position: relative;
+    width: 400px;
+    margin-left:auto;
+    margin-right: 5%;
+}
+
+#canvas {
+    z-index: 1;
 }
 
 #prizePointer {
-  position: fixed;
-  left: 69%;
-  top: 47.4%;
-  z-index: 999;
-  width:12%;
-  height:auto;
+    position: absolute;
+    left: 105px;
+    top: 45px;
+    z-index: 999;
 }
